@@ -1,0 +1,7 @@
+Add todo: 
+<input type="text" ng-model="newTodo"/><input type="button" value="Add todo" ng-click="addNewTodo()"/>
+{{newTodo}}
+
+<ul>
+	<li ng-repeat="todo in todos">{{todo.message}}</li>
+</ul>

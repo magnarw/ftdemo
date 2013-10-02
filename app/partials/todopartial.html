@@ -3,5 +3,5 @@ Add todo:
 {{newTodo}}
 
 <ul>
-	<li ng-repeat="todo in todos">{{todo.message}}</li>
+	<li ng-repeat="todo in todos" ng-show="todo.done == false"><span contenteditable="true" ng-model="todo">{{todo.message}}</span><input type="button" ng-click="setDone(todo)" value="done"></li>
 </ul>

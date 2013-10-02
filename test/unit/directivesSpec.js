@@ -5,15 +5,21 @@
 describe('directives', function() {
   beforeEach(module('myApp.directives'));
 
-  describe('app-version', function() {
-    it('should print current version', function() {
-      module(function($provide) {
-        $provide.value('version', 'TEST_VER');
-      });
-      inject(function($compile, $rootScope) {
-        var element = $compile('<span app-version></span>')($rootScope);
-        expect(element.text()).toEqual('TEST_VER');
-      });
+  describe('mouseover directive', function() {
+    var elm, scope; 
+    beforeEach(inject(function($rootScope, $compile) {
+      elm = angular.element(
+        '<div mouseover="highlight" ></div>');
+
+      scope = $rootScope;
+      $compile(elm)(scope);
+      scope.$digest();
+    }));
+
+    it("should give the element class highlight when mouser over", function() {
+      elm.triggerHandler('mouseover');
+        console.log(elm);
+      expect(elm.hasClass('highlight')).toBe(true);
     });
   });
 });

@@ -9,8 +9,13 @@ angular.module('myApp.controllers', []).
   .controller('MyCtrl2', [function() {
 
   }])
-  .controller('todoController', ['$scope',function($scope) {
-  	$scope.todos = []; 
+  .controller('todoController', ['$scope','$http',function($scope,$http) {
+  	$scope.todos = [];
+    $http.get('http://localhost:8080/ft-demo-pre/api/todoservice/').success(function(data) {
+      $scope.todos = data;
+    }).error(function(data) {
+       $scope.todos = []; 
+    }); 
   	$scope.newTodo = ''; 
     $scope.id = 1; 
   	$scope.addNewTodo = function () {
